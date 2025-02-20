@@ -1,7 +1,7 @@
 import os
 
-from project_builder import utils
-from project_builder.templates import ProjectTemplate
+from . import utils
+from .templates import ProjectTemplate
 
 class ProjectGenerator:
     def __init__(self):
@@ -24,6 +24,8 @@ class ProjectGenerator:
 
         # get the project structure
         self.project_structure = self.project_template.visualize_structure()
+
+        return self.project_structure
 
     # Function to get user inputs
     def get_user_inputs(self):
@@ -55,7 +57,6 @@ class ProjectGenerator:
             os.makedirs(directory, exist_ok=True)
 
         for file_path, content in self.project_template.files.items():
-            print("Creating file: ", file_path)
             with open(file_path, 'w') as file:
                 file.write(content)
 
