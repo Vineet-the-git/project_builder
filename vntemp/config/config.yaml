@@ -1,0 +1,18 @@
+data:
+raw_path: data/raw
+processed_path: data/processed
+
+model:
+    model_dir: models
+    model_name: model.pkl
+
+logger:
+    log_dir: logs
+
+train:
+    train_dir: data/raw
+
+test:
+    test_dir: data/raw
+
+# Add more configurations

@@ -1,5 +1,7 @@
+from project_builder import boiler_plates
+
 class ProjectTemplate:
-    def __init__(self, neural=False):
+    def __init__(self, boiler_plate=False, model_type='classical'):
         self.directories = [
             'config',
             'data',
@@ -9,29 +11,30 @@ class ProjectTemplate:
             'models',
             'notebooks',
             'src',
-            'src/data'
-            'src/models'
-            'src/vizualizations'
+            'src/data',
+            'src/models',
+            'src/vizualizations',
+            'src/utils',
             'tests',
-            'utils',
         ]
         self.files = {
-            'README.md': '# Your Project Title',
-            'requirements.txt': 'pandas\nscikit-learn\n# Add more dependencies',
-            'config/config.yaml': 'data:\n  raw: data/raw\n  processed: data/processed\n\nmodel:\n  model_dir: models\n  model_name: model.pkl',
-            'config/load_config.py': 'import yaml\n\nwith open("config/config.yaml", "r") as file:\n    config = yaml.safe_load(file)',
-            'logs/logger.py': 'import logging\n\nlogging.basicConfig(level=logging.INFO)',
+            'README.md': '# Project Title',
+            'requirements.txt': boiler_plates.bp_requirement_txt(),
+            'config/config.yaml': boiler_plates.bp_config_yaml(),
+            'config/load_config.py': boiler_plates.bp_load_config_py(),
+            'logger.py': boiler_plates.bp_logger_py(),
+            'exceptions.py': boiler_plates.bp_exception_py(),
             'src/__init__.py': '',
             'src/data/__init__.py' : '',
-            'src/data/make_dataset.py' : '# Create basic functionalities of a dataset',
+            'src/data/make_dataset.py' : boiler_plates.bp_make_dataset_py(boiler_plate, model_type),
             'src/data/build_features.py' : '# Create features',
             'src/models/__init__.py' : '',
-            'src/models/model.py' : '# Model definition',
-            'src/models/train_model.py' : '# Train model',
+            'src/models/model.py' : boiler_plates.bp_model_py(boiler_plate, model_type),
+            'src/models/train_model.py' : boiler_plates.bp_train_model_py(boiler_plate, model_type),
             'src/models/predict_model.py' : '# Predict model',
-            'src/tests/__init__.py' : '',
-            'src/tests/unit_tests.py' : '# Unit tests',
-            'src/tests/integration_tests.py' : '# Integration tests',
+            'tests/__init__.py' : '',
+            'tests/unit_tests.py' : '# Unit tests',
+            'tests/integration_tests.py' : '# Integration tests',
             'src/utils/__init__.py' : '',
             'src/utils/common.py' : '# Common functions',
         }   
